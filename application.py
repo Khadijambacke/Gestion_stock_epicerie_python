@@ -87,9 +87,12 @@ def vendus(minimum, maximum):
 
 def hausse():
     for nom in produit:
-        produit[nom]["prix"] += produit[nom]["prix"] * 0.10
+        produit[nom]["prix"] += produit[nom]["prix"] * hausse
     sauvegarder_produits()
-    print("Hausse de 10% appliquée sur tous les prix.")
+    print(f"Hausse de{hausse} appliquée sur tous les prix.")
+    for nom, info in produit.items():
+        print(f"{nom} : {info}")
+
 
 
 

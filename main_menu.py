@@ -28,7 +28,9 @@ def safar():
                     seuil = int(input("Saisir le seuil de rupture : "))
                     application.rupture(seuil)
                 case 6:
-                    application.hausse()
+                     h=int(input("definisser la hausse en pourcentage"))
+                     hausse=h/100;
+                     application.hausse()
                 case 0:
                     print("Merci d'avoir utilisé le programme.")
                     break

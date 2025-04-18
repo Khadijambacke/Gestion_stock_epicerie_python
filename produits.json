@@ -1,0 +1,47 @@
+{
+    "lait": {
+        "prix": 665.5,
+        "stock": 4,
+        "vendus": 3
+    },
+    "sucre": {
+        "prix": 439.23,
+        "stock": 0,
+        "vendus": 3
+    },
+    "banane": {
+        "prix": 1445.0666999999999,
+        "stock": 5,
+        "vendus": 3
+    },
+    "maad": {
+        "prix": 1051.49,
+        "stock": 5,
+        "vendus": 2
+    },
+    "thiere": {
+        "prix": 103.818,
+        "stock": 9,
+        "vendus": 6
+    },
+    "beignet": {
+        "prix": 2662.0,
+        "stock": 3,
+        "vendus": 1
+    },
+    "telephone ": {
+        "prix": 6050.0,
+        "stock": 3,
+        "vendus": 1
+    },
+    "tablette": {
+        "prix": 2420.0,
+        "stock": 3,
+        "vendus": 2
+    },
+    "chocolat": {
+        "prix": 968.0,
+        "stock": 5,
+        "vendus": 6
+    }
+}
