@@ -1,0 +1,14 @@
+[
+    {
+        "produit": "poudre",
+        "quantite": 1,
+        "prix": 5000,
+        "date": "2025-04-20"
+    },
+    {
+        "produit": "lait",
+        "quantite": 2,
+        "prix": 300,
+        "date": "2025-04-20"
+    }
+]

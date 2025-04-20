@@ -1,5 +1,5 @@
 import json
-
+from datetime import datetime
 produit = {}
 
 def charger_produits():
@@ -52,6 +52,17 @@ def misajour():
             print("Valeur invalide.")
     else:
         print("Produit non trouvé.")
+#enreistrement et historique
+def charger_historique():
+    global historique
+    try:
+        with open("historique.json", "r") as fichier:
+            historique = json.load(fichier)
+    except FileNotFoundError:
+        historique = []
+def sauvegarder_historique():
+    with open("historique.json", "w") as fichier:
+        json.dump(historique, fichier, indent=4)
 
 def Enregistrer():
     nom = input("Saisir le nom du produit vendu : ").lower()
@@ -61,11 +72,27 @@ def Enregistrer():
             produit[nom]["vendus"] += quantite
             produit[nom]["stock"] -= quantite
             sauvegarder_produits()
-            print("Vente enregistrée.")
+            teda=datetime.now()
+            prix = produit[nom]["prix"]
+            date_vente = datetime.now().strftime("%Y-%m-%d")
+            vente = {
+                "produit": nom,
+                "quantite": quantite,
+                "prix": prix,
+                "date": date_vente
+            }
+
+            charger_historique()
+            historique.append(vente)
+            sauvegarder_historique()
+
+            print(f"Vente enregistrée a {teda}")
         except ValueError:
             print("Entrée invalide.")
     else:
         print("Produit non trouvé.")
+
+
 
 def rupture(seuil):
     trouve = False
@@ -92,6 +119,44 @@ def hausse():
     print(f"Hausse de{hausse} appliquée sur tous les prix.")
     for nom, info in produit.items():
         print(f"{nom} : {info}")
+###
+
+
+
+def vente_du_jour():
+        try:
+            # Charger l'historique
+            with open("historique.json", "r") as fichier:
+                historique = json.load(fichier)
+        except FileNotFoundError:
+            print("Aucune vente enregistrée pour le moment.")
+            return
+
+        date_du_jour = datetime.now().strftime("%Y-%m-%d")
+        total = 0
+        ventes_du_jour = []
+
+        # Filtrer les ventes du jour
+        for vente in historique:
+            if vente["date"] == date_du_jour:
+                ventes_du_jour.append(vente)
+                total += vente["quantite"] * vente["prix"]
+
+        if not ventes_du_jour:
+            print(" Aucune vente pour aujourd'hui.")
+            return
+
+        # Affichage des ventes
+        print(f"\nRapport des ventes pour le {date_du_jour} :\n")
+        for vente in ventes_du_jour:
+            nom = vente["produit"]
+            quantite = vente["quantite"]
+            prix = vente["prix"]
+            sous_total = quantite * prix
+            print(
+                f"- {nom.capitalize()} | Quantité : {quantite} | Prix unitaire : {prix} FCFA | Total : {sous_total} FCFA")
+
+        print(f"\n Montant total vendu aujourd'hui : {total} FCFA\n")
 
 
 
@@ -106,7 +171,8 @@ def hausse():
 
 
 
-git
+
+
 
 
 

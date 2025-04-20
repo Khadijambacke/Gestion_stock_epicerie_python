@@ -1,13 +1,13 @@
 {
     "lait": {
-        "prix": 665.5,
-        "stock": 4,
-        "vendus": 3
+        "prix": 300,
+        "stock": 1,
+        "vendus": 6
     },
     "sucre": {
         "prix": 439.23,
-        "stock": 0,
-        "vendus": 3
+        "stock": -1,
+        "vendus": 4
     },
     "banane": {
         "prix": 1445.0666999999999,
@@ -43,5 +43,25 @@
         "prix": 968.0,
         "stock": 5,
         "vendus": 6
+    },
+    "pain au lait": {
+        "prix": 150,
+        "stock": -1,
+        "vendus": 6
+    },
+    "fataya": {
+        "prix": 500,
+        "stock": 3,
+        "vendus": 2
+    },
+    "main demi": {
+        "prix": 300,
+        "stock": 3,
+        "vendus": 5
+    },
+    "poudre": {
+        "prix": 5000,
+        "stock": 2,
+        "vendus": 3
     }
 }
