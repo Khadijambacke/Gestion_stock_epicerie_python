@@ -1,6 +1,39 @@
 import json
 from datetime import datetime
+import  mysql.connector
+
 produit = {}
+#fonction connection avec une bse de donee
+def basedonne():
+    try:
+       conn= mysql.connector.connect(
+          host='localhost',
+          user='root',
+          password='',
+          database='epiceriepy')
+       ##cursor=conn.cursor()
+       return conn
+    except:
+        print("erreur de la base de donnee")
+def creation_table():
+    conn=basedonne()
+    if conn:
+      cursor=conn.cursor()
+      sql = """
+         CREATE TABLE IF NOT EXISTS PRODUITS (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            nom VARCHAR(100),
+            prix FLOAT,
+            stock INT,
+            vendus INT,
+            categorie VARCHAR(100)
+     )
+     """
+      cursor.execute(sql)
+      conn.commit()
+      cursor.close()
+      conn.close()
+    ##print("table cree avec succes");
 
 def charger_produits():
     global produit
@@ -26,16 +59,26 @@ def ajout():
             nos(prix)
             stock = int(input("Saisir le stock du produit : "))
             vendus = int(input("Saisir le nombre de vente du produit : "))
+            categorie=input("entrer la categorie du produits")
             produit[nom] = {
                 "prix": prix,
                 "stock": stock,
-                "vendus": vendus
+                "vendus": vendus,
+                "caegorie":categorie
             }
             sauvegarder_produits()
-            print("Produit ajouté avec succès")
+            conn=basedonne()
+            if conn:
+                cursor=conn.cursor()
+                sql = """INSERT INTO PRODUITS (nom,prix,stock,vendus,categorie) VALUES (%s,%s,%s,%s,%s)"""
+                valeurs = (nom, prix, stock, vendus, categorie)
+                cursor.execute(sql, valeurs)
+                conn.commit()
+                cursor.close()
+                conn.close()
+                print("Produit ajouté avec succès")
         except ValueError as e:
             print("Erreur :", e)
-
 def misajour():
     n = input("Nom du produit à mettre à jour : ").lower()
     if n in produit:
@@ -157,7 +200,6 @@ def vente_du_jour():
                 f"- {nom.capitalize()} | Quantité : {quantite} | Prix unitaire : {prix} FCFA | Total : {sous_total} FCFA")
 
         print(f"\n Montant total vendu aujourd'hui : {total} FCFA\n")
-
 
 
 

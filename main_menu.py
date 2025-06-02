@@ -1,6 +1,7 @@
 import application
 from datetime import datetime
 def safar():
+    application.basedonne()
     application.charger_produits()
     while True:
         print("\n==== MENU ====")
@@ -43,6 +44,7 @@ def safar():
             print("Veuillez entrer un nombre valide.")
 
 if __name__ == "__main__":
+    application.creation_table()
     safar()
 
 

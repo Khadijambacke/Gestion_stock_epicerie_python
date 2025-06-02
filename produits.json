@@ -1,8 +1,9 @@
 {
     "lait": {
-        "prix": 300,
-        "stock": 1,
-        "vendus": 6
+        "prix": 200,
+        "stock": 5,
+        "vendus": 3,
+        "caegorie": "laitier"
     },
     "sucre": {
         "prix": 439.23,
@@ -63,5 +64,21 @@
         "prix": 5000,
         "stock": 2,
         "vendus": 3
+    },
+    "stylo": {
+        "prix": 200,
+        "stock": 23,
+        "vendus": 8
+    },
+    "crayon": {
+        "prix": 300,
+        "stock": 2,
+        "vendus": 1
+    },
+    "voilem": {
+        "prix": 2500,
+        "stock": 10,
+        "vendus": 4,
+        "caegorie": "jersey"
     }
 }
