@@ -5,13 +5,13 @@ import  mysql.connector
 produit = {}
 #fonction connection avec une bse de donee
 def basedonne():
+    """cette fonction fait ceci."""
     try:
        conn= mysql.connector.connect(
           host='localhost',
           user='root',
           password='',
           database='epiceriepy')
-       ##cursor=conn.cursor()
        return conn
     except:
         print("erreur de la base de donnee")
@@ -19,6 +19,13 @@ def creation_table():
     conn=basedonne()
     if conn:
       cursor=conn.cursor()
+      sql=("""
+                 CREATE TABLE IF NOT EXISTS CATEGORIES (
+                     id INT AUTO_INCREMENT PRIMARY KEY,
+                     nom VARCHAR(100) UNIQUE
+                 )
+             """)
+
       sql = """
          CREATE TABLE IF NOT EXISTS PRODUITS (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -29,11 +36,22 @@ def creation_table():
             categorie VARCHAR(100)
      )
      """
+      sql = """
+        CREATE TABLE IF NOT EXISTS VENTE(
+          id INT AUTO_INCREMENT PRIMARY KEY,
+                produit_id INT,
+                quantite INT,
+                prix FLOAT,
+                date_vente DATE,
+                FOREIGN KEY (produit_id) REFERENCES PRODUITS(id)
+        )
+      """
       cursor.execute(sql)
       conn.commit()
       cursor.close()
       conn.close()
     ##print("table cree avec succes");
+
 
 def charger_produits():
     global produit
@@ -130,6 +148,20 @@ def Enregistrer():
             sauvegarder_historique()
 
             print(f"Vente enregistrée a {teda}")
+
+            conn = basedonne()
+            if conn:
+               cursor = conn.cursor()
+               cursor.execute("SELECT id FROM PRODUITS WHERE nom = %s", (nom,))
+               result=cursor.fetchone()
+               if result:
+                    produit_id=result[0]
+                    sql = "INSERT INTO VENTE (quantite,produit_id,prix,date_vente)VALUES(%s,%s,%s,%s)"
+                    valeurs = (quantite,produit_id,prix,date_vente)
+                    cursor.execute(sql, valeurs)
+                    conn.commit()
+                    cursor.close()
+                    conn.close()
         except ValueError:
             print("Entrée invalide.")
     else:
@@ -162,7 +194,9 @@ def hausse():
     print(f"Hausse de{hausse} appliquée sur tous les prix.")
     for nom, info in produit.items():
         print(f"{nom} : {info}")
+
 ###
+
 
 
 

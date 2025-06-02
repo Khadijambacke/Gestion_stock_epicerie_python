@@ -80,5 +80,23 @@
         "stock": 10,
         "vendus": 4,
         "caegorie": "jersey"
+    },
+    "viande": {
+        "prix": 7000,
+        "stock": 3,
+        "vendus": 7,
+        "caegorie": "viande"
+    },
+    "dibi": {
+        "prix": 6000,
+        "stock": 5,
+        "vendus": 16,
+        "caegorie": "viande"
+    },
+    "sandiwich": {
+        "prix": 1000,
+        "stock": 4,
+        "vendus": 2,
+        "caegorie": "pate"
     }
 }

@@ -10,5 +10,35 @@
         "quantite": 2,
         "prix": 300,
         "date": "2025-04-20"
+    },
+    {
+        "produit": "viande",
+        "quantite": 2,
+        "prix": 7000,
+        "date": "2025-06-02"
+    },
+    {
+        "produit": "dibi",
+        "quantite": 3,
+        "prix": 6000,
+        "date": "2025-06-02"
+    },
+    {
+        "produit": "viande",
+        "quantite": 1,
+        "prix": 7000,
+        "date": "2025-06-02"
+    },
+    {
+        "produit": "dibi",
+        "quantite": 2,
+        "prix": 6000,
+        "date": "2025-06-02"
+    },
+    {
+        "produit": "dibi",
+        "quantite": 2,
+        "prix": 6000,
+        "date": "2025-06-02"
     }
 ]
